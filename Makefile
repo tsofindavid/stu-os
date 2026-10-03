@@ -203,6 +203,7 @@ UPROGS=\
 	$U/_forphan\
 	$U/_dorphan\
 	$U/_sync\
+	$U/_cp\
 
 
 
@@ -409,3 +410,25 @@ check-qemu-version:
 .PHONY: fmt
 fmt:
 	clang-format -i $(wildcard kernel/*.[ch] user/*.[ch] mkfs/*.c)
+
+.PHONY: help
+help:
+	@echo "xv6-riscv -- lab '$(LAB)' -- available targets:"
+	@echo
+	@echo "  qemu           rebuild fs.img if needed, then boot xv6 in QEMU"
+	@echo "  qemu-fs        boot xv6 with the existing fs.img (no rebuild)"
+	@echo "  qemu-gdb       boot xv6 halted at entry, ready for gdb on port $(GDBPORT)"
+	@echo "  grade          make clean, then run the lab grader (add V=1 to see commands)"
+	@echo "  clean          remove all build artifacts (objects, kernel, fs.img, programs)"
+	@echo "  zipball        clean + submit-check, then archive HEAD into lab.zip"
+	@echo "  submit-check   verify you are on branch $(LAB) with no uncommitted changes"
+	@echo "  fmt            clang-format kernel/, user/ and mkfs/"
+	@echo "  tags           regenerate etags for the sources"
+	@echo "  print-gdbport  print the port qemu-gdb waits on"
+	@echo "  help           this message"
+	@echo
+	@echo "Variables: LAB=$(LAB) (edit conf/lab.mk), CPUS=$(CPUS),"
+	@echo "            TOOLPREFIX=$(TOOLPREFIX), KCSAN=1 for the race detector build."
+ifeq ($(LAB),net)
+	@echo "            SERVERPORT=$(SERVERPORT) (xv6 echo server host port)."
+endif
