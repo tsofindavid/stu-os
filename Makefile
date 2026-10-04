@@ -205,6 +205,7 @@ UPROGS=\
 	$U/_sync\
 	$U/_cp\
 	$U/_testSquare\
+	$U/_testNcpus\
 
 
 

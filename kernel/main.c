@@ -5,6 +5,7 @@
 #include "defs.h"
 
 volatile static int started = 0;
+int harts = 0;
 
 // start() jumps here in supervisor mode on all CPUs.
 void
@@ -36,6 +37,8 @@ main()
       ;
 
     printk("hart %d starting\n", cpuid());
+    __sync_fetch_and_add(&harts, 1);
+
     kvminithart();  // turn on paging
     trapinithart(); // install kernel trap vector
     plicinithart(); // ask PLIC for device interrupts

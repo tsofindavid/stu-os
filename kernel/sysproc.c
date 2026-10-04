@@ -119,3 +119,9 @@ sys_square(void)
 
   return i * i;
 }
+
+uint64
+sys_ncpus(void)
+{
+  return harts;
+}

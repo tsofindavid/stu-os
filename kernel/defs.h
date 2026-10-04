@@ -10,6 +10,9 @@ struct sleeplock;
 struct stat;
 struct superblock;
 
+// main.c
+extern int harts;
+
 // bio.c
 void            binit(void);
 struct buf*     bread(uint, uint);
