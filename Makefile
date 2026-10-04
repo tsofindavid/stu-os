@@ -204,6 +204,7 @@ UPROGS=\
 	$U/_dorphan\
 	$U/_sync\
 	$U/_cp\
+	$U/_testSquare\
 
 
 
